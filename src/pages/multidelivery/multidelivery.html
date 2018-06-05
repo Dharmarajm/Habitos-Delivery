@@ -1,0 +1,39 @@
+<!--
+  Generated template for the MultideliveryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Multi Delivery Order</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list reorder="true" (ionItemReorder)="reorderItems($event)"> 
+   <ion-item *ngFor="let Multi of multiselect; let i = index" [attr.data-index]="i">
+    <ion-label><span class="label1">{{Multi.tenant_name}}</span><span class="label2" style="float:right;color:white;border-radius:50%;background:darkgreen;width:17px;text-align:center;">{{apply(i)}}</span></ion-label>
+    <ion-checkbox color="violet" [checked]="selectedCategory.indexOf(Multi.tenant_id) >= 0" (click)="updateCheckedOptions(Multi.tenant_id,$event)"></ion-checkbox>
+   </ion-item>
+  </ion-list> 
+  <ion-list *ngIf="multiselect == undefined || multiselect?.length==0">
+    <ion-item> 
+       <ion-label>No Delivery Available</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer (click)="navigate()">
+  <ion-toolbar color="primary">
+    <ion-title class="btn-align">Start Navigate</ion-title>
+  </ion-toolbar>
+</ion-footer>
